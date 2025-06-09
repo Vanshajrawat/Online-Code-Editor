@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Code Editor</title>
+
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/e07f33ea87.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/codemirror.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/theme/dracula.min.css">
+  
+  <style>
+    nav.navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #111;
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+      gap: 40px;
+      z-index: 1000;
+    }
+    nav.navbar a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav.navbar a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+
+
+
+  <!-- ✅ Navigation Bar -->
+  <nav class="navbar">
+    <a href="signup.html">Signup</a>
+    <a href="login.html">Login</a>
+    <a href="index.html">Editor</a>
+  </nav>
+
+  <div class="container" style="margin-top: 60px;">
+    <div class="left">
+      <label><i class="fa-brands fa-html5"></i> HTML</label>
+      <textarea id="html-code"></textarea>
+
+      <label><i class="fa-brands fa-css3-alt"></i> CSS</label>
+      <textarea id="css-code"></textarea>
+
+      <label><i class="fa-brands fa-js"></i> JavaScript</label>
+      <textarea id="js-code"></textarea>
+
+    
+    </div>
+
+
+    <div class="button-group">
+    <button onclick="run()">▶ Run</button>
+    <button onclick="saveCode()">💾 Save Code</button>
+    <button onclick="loadCode()">📂 Load Code</button>
+    <button onclick="downloadFiles()">📥 Download</button>
+    <button onclick="saveToDatabase()">🛢️ Save to DB</button>
+    <button onclick="loadFromDatabase()">🗃️ Load from DB</button>
+    <input type="file" id="upload" accept=".html,.css,.js" multiple onchange="uploadFiles(event)">
+    </div>
+
+
+
+    <div class="right">
+      <label><i class="fa-solid fa-play"></i> Output</label>
+      <iframe id="output" sandbox="allow-scripts allow-same-origin"></iframe>
+    </div>
+  </div>
+
+  <!-- ✅ Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/mode/javascript/javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/mode/htmlmixed/htmlmixed.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/mode/css/css.min.js"></script>
+  <script src="script.js"></script>
+
+  <script>
+    // ✅ Redirect if not logged in
+    const currentPage = window.location.pathname;
+    const isLoggedIn = localStorage.getItem("user") && localStorage.getItem("pass");
+    if (!isLoggedIn && currentPage.includes("index.html")) {
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>

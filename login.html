@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Login</title>
+  <style>
+    body { background: #222; color: white; font-family: Arial; padding: 40px; }
+    form { background: #333; padding: 20px; border-radius: 8px; max-width: 300px; margin: auto; }
+    input { display: block; width: 100%; margin: 10px 0; padding: 10px; border: none; }
+  </style>
+</head>
+<body>
+
+    <nav class="navbar">
+    <a href="signup.html">Signup</a>
+    <a href="login.html">Login</a>
+    <a href="index.html">Editor</a>
+    </nav>
+
+
+  <h2>Login</h2>
+  <form onsubmit="return loginUser()">
+    <input type="text" id="user" placeholder="Username" required />
+    <input type="password" id="pass" placeholder="Password" required />
+    <input type="submit" value="Login" />
+  </form>
+  <script>
+    function loginUser() {
+      const user = localStorage.getItem('user');
+      const pass = localStorage.getItem('pass');
+      if (
+        user === document.getElementById('user').value &&
+        pass === document.getElementById('pass').value
+      ) {
+        alert("Login successful!");
+        window.location.href = "index.html";
+      } else {
+        alert("Invalid credentials.");
+      }
+      return false;
+    }
+  </script>
+</body>
+</html>
